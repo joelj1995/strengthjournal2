@@ -1,0 +1,8 @@
+
+<main class="main">
+  <div *ngIf="auth.user$ | async as user">
+    <p id="welcomeMessage">Welcome, {{ user.name }}</p>
+  </div>
+</main>
+
+<router-outlet></router-outlet>

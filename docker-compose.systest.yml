@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+
+  spa:
+    build:
+      context: ./journal_app
+    ports:
+    - "80:80"
+    - "443:443"
+
+  api:
+    build:
+      context: ./api
+
+  systest:
+    depends_on:
+      - spa
+      - api
+    build:
+      context: ./system_test
+    environment:
+      - CONTAINER_MODE=true
+      - SJ_USER_PASSWORD=${SJ_USER_PASSWORD}
